@@ -1,0 +1,192 @@
+Sub CM_scorecard()
+'
+' CM_scorecard Macro
+'
+' Keyboard Shortcut: Ctrl+Shift+W
+'
+    Sheets("CM Scorecard").Select
+    Range("A1:S27").Select
+    Application.CutCopyMode = False
+    Selection.Delete Shift:=xlToLeft
+    Sheets("Quality Scorecard").Select
+    Range("A1:R26").Select
+    Selection.Copy
+    Sheets("CM Scorecard").Select
+    Range("A1").Select
+    ActiveSheet.Paste
+    
+    
+'copying and pasting the give CM email in cell and for furthur query
+    
+    Dim a As String
+    a = InputBox("Enter CM Email")
+    Sheets("CM Scorecard").Select
+    ActiveSheet.Range("I1").Value = a
+    
+'Extracting the name from email
+    Application.ScreenUpdating = False
+    
+    Range("I1").Select
+    Selection.Copy
+    Range("U21").Select
+    ActiveSheet.Paste
+    Range("U23").Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=LEFT(R[-2]C,FIND(""@"",R[-2]C)-1)"
+    Range("U24").Select
+    
+    ActiveCell.FormulaR1C1 = "=PROPER(R[-1]C)"
+    
+    Range("U24").Select
+    Selection.Copy
+    Range("W22").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    
+    Selection.TextToColumns Destination:=Range("W22"), DataType:=xlDelimited, _
+        TextQualifier:=xlDoubleQuote, ConsecutiveDelimiter:=False, Tab:=False, _
+        Semicolon:=False, Comma:=False, Space:=False, Other:=True, OtherChar _
+        :=".", FieldInfo:=Array(Array(1, 1), Array(2, 1)), TrailingMinusNumbers:=True
+     Range("W24").Select
+    ActiveCell.FormulaR1C1 = "=CONCATENATE(R[-2]C,"" "",R[-2]C[1])"
+    
+    Range("W24").Select
+    Selection.Copy
+    Range("B1:D1").Select
+    ActiveSheet.Paste
+    Range("T19").Select
+    Application.CutCopyMode = False
+    Selection.AutoFill Destination:=Range("T19:T26"), Type:=xlFillDefault
+    Range("T19:X29").Select
+    Selection.Delete Shift:=xlToLeft
+    
+
+    
+    Application.ScreenUpdating = True
+
+' Extracting data from Internal Audits
+
+    With Sheets("Internal Audit")
+    .Range("A:Q").AutoFilter Field:=2, Criteria1:=a
+    Intersect(.AutoFilter.Range.Offset(1), .Range("C:C")).Copy
+    Sheets("CM Scorecard").Range("B5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("E:F")).Copy
+    Sheets("CM Scorecard").Range("C5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("J:K")).Copy
+    Sheets("CM Scorecard").Range("E5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("N:N")).Copy
+    Sheets("CM Scorecard").Range("G5").PasteSpecial xlPasteValues
+    End With
+    
+
+' Extracting data from Weekly Audits
+
+    With Sheets("Weekly Report")
+    .Range("A:Q").AutoFilter Field:=9, Criteria1:=a
+    Intersect(.AutoFilter.Range.Offset(1), .Range("A:A")).Copy
+    Sheets("CM Scorecard").Range("H5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("J:J")).Copy
+    Sheets("CM Scorecard").Range("I5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("B:B")).Copy
+    Sheets("CM Scorecard").Range("J5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("D:D")).Copy
+    Sheets("CM Scorecard").Range("K5").PasteSpecial xlPasteValues
+    Intersect(.AutoFilter.Range.Offset(1), .Range("F:F")).Copy
+    Sheets("CM Scorecard").Range("L5").PasteSpecial xlPasteValues
+    'Intersect(.AutoFilter.Range.Offset(1), .Range("Q:Q")).Copy
+    'Sheets("CM Scorecard").Range("M5").PasteSpecial xlPasteValues
+    End With
+
+
+
+'Add extra sheet into already extising file
+
+'Add new worksheet for CM
+'
+     Dim FilePath As String
+'
+'     Dim wbk As Workbook
+'     Set wbk = ActiveWorkbook
+'     Dim work As Workbook
+'     Dim strName As String
+'     strName = Sheet6.Range("B1")
+'
+'
+'     FilePath = "C:\Users\hesro\Downloads\Files\" & strName & ".xlsx"
+'
+'     Workbooks.Open FilePath
+'
+'     Set work = ActiveWorkbook
+'
+'     Dim ws As Worksheet
+'     Set ws = Worksheet.Add
+'     Sheets.Add Before:=ActiveSheet
+'
+'
+'     wbk.Activate
+'
+'     Range("A1:R26").Copy
+'
+'     work.Activate
+'
+'     Range("A1").Select
+'     ActiveSheet.Paste
+'
+'
+'     Set ws = ActiveSheet
+'     ws.name = ws.Range("R1")
+'
+'     ActiveWorkbook.Save
+'    ActiveWindow.Close
+     
+     
+'Add a report from scratch
+
+
+     Dim wbk As Workbook
+   Set wbk = ActiveWorkbook
+
+     Dim wb As Workbook
+    Set wb = Workbooks.Add
+
+
+    wbk.Activate
+    'Windows("CMscorecard_saving in same file.xlsm").Activate
+    Range("A1:R26").Select
+    Selection.Copy
+
+    wb.Activate
+
+    Range("A1").Select
+    ActiveSheet.Paste
+
+    Dim strName As String
+    strName = Sheet6.Range("B1")
+
+    Range("B1:D1").Select
+    Application.CutCopyMode = False
+
+    ChDir "C:\Users\hesro\Downloads\Files"
+    ActiveWorkbook.SaveAs Filename:= _
+        "C:\Users\hesro\Downloads\Files\" & strName & ".xlsx"  'please enter your path here make sure to add it in between first "".
+
+    ActiveWorkbook.Save
+    ActiveWindow.Close
+
+    
+    Range("A1").Select
+    
+
+'Remove filter
+    
+    wbk.Activate
+    Sheets("Internal Audit").Select
+    ActiveSheet.Range("$A$1:$N$163").AutoFilter Field:=2
+    Sheets("Weekly Report").Select
+    ActiveSheet.Range("$A$1:$K$104").AutoFilter Field:=9
+'
+    Range("H9").Select
+    Sheets("CM Scorecard").Activate
+    MsgBox "CM scorecard is saved, Please add the Area of focus."
+    
+End Sub
