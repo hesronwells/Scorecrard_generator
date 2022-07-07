@@ -12,7 +12,7 @@ Quality scorecard (Tab1)
 Macros will copy the new sample Quality Report from this Tab so, if you want to add something( Ex: links for calibration, Week date etc) which is common and needed to be appear in each CM Quality Report. Please Add it here once and it will copy it from here.
 
 
-![](Project_screenshots/Merge%20data.png)
+![](Images/1.png)
 
 
 
@@ -24,6 +24,8 @@ Step 2)
 
 Copy pastes your entire Weekly report and Internal Audit report in their respective Tabs
 
+![](Images/2.png)
+
 Note: If weekly report is too large to copy the entire report, add filter in appeal column and it will lower down the volume.
 
 Step 3) Preprocess 
@@ -32,7 +34,8 @@ Use shortcut: Ctrl + p   OR   Select Macros from developer ribbon.
 
 
 
-
+![](Images/3.png)
+![](Images/4.png)
 
 
 
@@ -51,7 +54,7 @@ select New_qauality_report from macros
 Or use shortcut key : Ctrl + n
 
 
-
+![](Images/5.png)
 
 
 2)If the file for CM already exists and you want to make a new sheet in existing file then 
@@ -61,7 +64,7 @@ select Quality_report from macros
 Or Shortcut key : Ctrl + r
 
 
-
+![](Images/6.png)
 
 
 Step 5)
@@ -69,7 +72,7 @@ Step 5)
 Once you run either of the option from step 4, you will see command input box in which copy-paste CM email
 
 
-
+![](Images/7.png)
 
 
 Step 6)
@@ -77,7 +80,7 @@ Step 6)
 At the end,  you will see below message box. This means macros have successfully the saved data
 
 
-
+![](Images/7.png)
 
 
 Step 7)
@@ -91,7 +94,7 @@ Or short-cut key : Ctrl + d
 This will delete all previous data and Make workbook clean and empty for your next week data.
 
 
-
+![](Images/8.png)
 
 
 Important Pointer While Dealing with Macros: 
@@ -103,7 +106,7 @@ Note: On click Yes it will replace the existing file and we will lose all the pr
 ALWAYS CLICK NO
 
 
-
+![](Images/9.png)
 
 
 
@@ -112,7 +115,7 @@ ALWAYS CLICK NO
 Restart the process again
 
 
-
+![](Images/10.png)
 
 If you face any problem, please feel free to contact me on linkedIn. Kudos:)
 
