@@ -54,7 +54,7 @@ select New_qauality_report from macros
 Or use shortcut key : Ctrl + n
 
 
-![](Images/5.png)
+![](Images/11.png)
 
 
 2)If the file for CM already exists and you want to make a new sheet in existing file then 
@@ -64,7 +64,7 @@ select Quality_report from macros
 Or Shortcut key : Ctrl + r
 
 
-![](Images/6.png)
+![](Images/5.png)
 
 
 Step 5)
@@ -72,7 +72,7 @@ Step 5)
 Once you run either of the option from step 4, you will see command input box in which copy-paste CM email
 
 
-![](Images/7.png)
+![](Images/6.png)
 
 
 Step 6)
