@@ -12,7 +12,7 @@ Quality scorecard (Tab1)
 Macros will copy the new sample Quality Report from this Tab so, if you want to add something( Ex: links for calibration, Week date etc) which is common and needed to be appear in each CM Quality Report. Please Add it here once and it will copy it from here.
 
 
-
+![](Project_screenshots/Merge%20data.png)
 
 
 
